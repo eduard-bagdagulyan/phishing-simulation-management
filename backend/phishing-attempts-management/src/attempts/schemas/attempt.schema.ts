@@ -8,6 +8,9 @@ export class Attempt {
   @Prop({ required: true })
   email: string;
 
+  @Prop({ required: true })
+  link: string;
+
   @Prop({ default: 'Sent' })
   status: string;
 
