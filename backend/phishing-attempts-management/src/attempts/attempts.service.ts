@@ -15,7 +15,7 @@ export class AttemptsService {
   ) {}
 
   async getAllAttempts(): Promise<Attempt[]> {
-    return this.attemptModel.find();
+    return this.attemptModel.find().sort({ createdAt: -1 });
   }
 
   async sendPhishingEmail(email: string): Promise<Attempt> {
