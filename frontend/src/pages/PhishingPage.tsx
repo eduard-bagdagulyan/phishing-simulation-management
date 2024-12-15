@@ -101,6 +101,7 @@ export default function PhishingPage() {
         <thead className="table-light">
           <tr>
             <th>Email</th>
+            <th>Link</th>
             <th>Status</th>
             <th>Created At</th>
           </tr>
@@ -109,6 +110,17 @@ export default function PhishingPage() {
           {attempts.map((a) => (
             <tr key={a._id}>
               <td>{a.email}</td>
+              <td>
+                <a
+                  href={a.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary d-flex align-items-center"
+                >
+                  <i className="bi bi-box-arrow-up-right me-2"></i>
+                  Open Link
+                </a>
+              </td>
               <td>{a.status}</td>
               <td>{new Date(a.createdAt).toLocaleString()}</td>
             </tr>

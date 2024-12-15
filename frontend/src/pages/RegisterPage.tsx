@@ -54,6 +54,9 @@ export default function RegisterPage() {
           Register
         </button>
       </form>
+      <p className="text-center mt-3">
+        Already have an account? <a href="/login">Login</a>
+      </p>
     </div>
   );
 }
