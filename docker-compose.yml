@@ -1,0 +1,40 @@
+services:
+  phishing-simulation:
+    build: ./backend/phishing-simulation
+    container_name: phishing_simulation
+    env_file:
+      - .env
+    ports:
+      - ${PHISHING_SIMULATION_PORT}:${PHISHING_SIMULATION_PORT}
+    depends_on:
+      - mongo
+  attempts-management:
+    build: ./backend/phishing-attempts-management
+    container_name: attempts_management
+    env_file:
+      - .env
+    ports:
+      - ${PHISHING_MANAGEMENT_PORT}:${PHISHING_MANAGEMENT_PORT}
+    depends_on:
+      - mongo
+      - phishing-simulation
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    env_file:
+      - .env
+    ports:
+      - ${VITE_APP_PORT}:80
+    depends_on:
+      - attempts-management
+  mongo:
+    image: mongo
+    restart: always
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
